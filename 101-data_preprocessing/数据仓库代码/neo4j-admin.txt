@@ -1,0 +1,7 @@
+// 只插入评论部分
+neo4j-admin import --mode=csv --database=graph.db --nodes:user importdata\userHeader.csv,importdata\userCsv.csv --nodes:product importdata\productHeader.csv,importdata\productCsv.csv --nodes:review importdata\reviewHeader.csv,importdata\reviewCsv.csv --relationships:comment importdata\commentHeader.csv,importdata\commentCsv.csv --relationships:hasComment importdata\hasCommentHeader.csv,importdata\hasCommentCsv.csv
+// 只插入电影详情信息部分
+neo4j-admin import --mode=csv --database=graph.db --nodes:product importdata\productsHeader.csv,importdata\productsCsv.csv --nodes:staff importdata\staffHeader.csv,importdata\staffCsv.csv --relationships:act_in importdata\actHeader.csv,importdata\actCsv.csv --relationships:direct_in importdata\directHeader.csv,importdata\directCsv.csv
+// 插入所有部分
+neo4j-admin import --mode=csv --database=graph.db --nodes:user importdata\userHeader.csv,importdata\userCsv.csv --nodes:product importdata\productsHeader.csv,importdata\productsCsv.csv --nodes:review importdata\reviewHeader.csv,importdata\reviewCsv.csv --nodes:staff importdata\staffHeader.csv,importdata\staffCsv.csv --relationships:comment importdata\commentHeader.csv,importdata\commentCsv.csv --relationships:hasComment importdata\hasCommentHeader.csv,importdata\hasCommentCsv.csv --relationships:act_in importdata\actHeader.csv,importdata\actCsv.csv --relationships:direct_in importdata\directHeader.csv,importdata\directCsv.csv
+

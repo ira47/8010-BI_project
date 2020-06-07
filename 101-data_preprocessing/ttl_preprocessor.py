@@ -1,12 +1,13 @@
 import csv
 
 class ttl_preprocessor:
-    ttl_addr = '../data/mappingbased_objects_en.ttl'
-    relationship_output_addr = '../data/relationship_15m_to_end.csv'
-    entity_output_addr = '../data/entity.csv'
-    entity_input_addr = '../data/entity_old.csv'
     line_start = 1 # 默认为1，因为第一行是干扰信息
     line_end = 18746175 # 最大值18746175
+    relationship_output_addr = '../data/relationship.csv'
+    entity_output_addr = '../data/entity.csv'
+
+    ttl_addr = '../data/mappingbased_objects_en.ttl'
+    entity_input_addr = '../data/entity_old.csv'
     entity_set = set()
     print_interval = 100000
 
@@ -22,6 +23,13 @@ class ttl_preprocessor:
             keyword = division[-2]
         keyword = keyword.replace('"','')
         keyword = keyword.replace(',','')
+        keyword = keyword.replace('_', ' ')
+        old_keywords = keyword.split(' ')
+        new_keywords = []
+        for key in old_keywords:
+            if key != '' and not key.isdigit():
+                new_keywords.append(key)
+        keyword = ' '.join(new_keywords)
         return keyword
         
     def process_line(self,line):
@@ -55,7 +63,7 @@ class ttl_preprocessor:
                         self.entity_set.add(a)
                     if b != '' and b not in self.entity_set:
                         self.entity_set.add(b)
-                    if a !='' and to != '' and b!='':
+                    if a!='' and to!='' and b!='' and a!=b:
                         writer.writerow([a,to,b])
                     if line_index % self.print_interval == 0:
                         print(line_index)
