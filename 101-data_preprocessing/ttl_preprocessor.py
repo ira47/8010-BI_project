@@ -33,6 +33,7 @@ class ttl_preprocessor:
         return keyword
         
     def process_line(self,line):
+        PREFIX = 'http://dbpedia.org/resource/'
         websites = line.strip().split(' ')
         if len(websites) != 4: # 最后还有一个 .，所以不是3
             print('文件行不符合三元组格式要求')
@@ -45,9 +46,17 @@ class ttl_preprocessor:
                 print(websites)
                 print(website)
                 exit(2)
-        a = self.website_to_keyword(websites[0])
+        a_website = websites[0].replace('"','')[1:-1]
+        b_website = websites[2].replace('"','')[1:-1]
+        a = ''
+        b = ''
+        if len(a_website) > len(PREFIX) and \
+            a_website[:len(PREFIX)] == PREFIX:
+            a = self.website_to_keyword(websites[0])
+        if len(b_website) > len(PREFIX) and \
+            b_website[:len(PREFIX)] == PREFIX:
+            b = self.website_to_keyword(websites[2])
         to = self.website_to_keyword(websites[1])
-        b = self.website_to_keyword(websites[2])
         return a,to,b
 
     def output_relationship(self):
