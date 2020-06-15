@@ -2,9 +2,9 @@ import csv
 
 class ttl_preprocessor:
     line_start = 1 # 默认为1，因为第一行是干扰信息
-    line_end = 18746175 # 最大值18746175
-    relationship_output_addr = '../data/relationship.csv'
-    entity_output_addr = '../data/entity.csv'
+    line_end = 10000 # 最大值18746175
+    relationship_output_addr = '../data/relationship_1w.csv'
+    entity_output_addr = '../data/entity_backup_1w.csv'
 
     ttl_addr = '../data/mappingbased_objects_en.ttl'
     entity_input_addr = '../data/entity_old.csv'

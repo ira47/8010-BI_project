@@ -1,1 +1,1 @@
-:START_ID(entity),type,:END_ID(entity)
+:START_ID(entity),relationship,:END_ID(entity)
